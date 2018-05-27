@@ -1,0 +1,212 @@
+﻿@using CarGoatWebServices.Game.Heroes
+@using CarGoatWebServices.Models
+@model CarGoatWebServices.Models.Stats
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link href="~/fonts/glyphicons-halflings-regular.svg" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="jumbotron">
+                <h1>Описание</h1>
+                <p>
+                    Представьте, что вы стали участником игры, в которой вам нужно выбрать одну из трёх дверей. За одной из дверей находится автомобиль, за двумя другими дверями — козы.
+                    Вы выбираете одну из дверей, например, номер 1, после этого ведущий, который знает, где находится автомобиль, а где — козы, открывает одну из оставшихся дверей, например, номер 3, за которой находится коза.
+
+                    После этого он спрашивает вас — не желаете ли вы изменить свой выбор и выбрать дверь номер 2? Увеличатся ли ваши шансы выиграть автомобиль, если вы примете предложение ведущего и измените свой выбор?
+                </p>
+                <span class="task-name">
+                    Задача
+                </span>
+                <span class="task-description">
+                    Проверьте этот парадокс на C#,возможно, с применением MVC, через многократное повторение возможных стратегий действий участника. 
+                </span>
+            </div>
+        </header>
+        <main>
+            <button type="button" class="btn btn-play btn-lg btn-success">ИГРАТЬ</button>
+            <div class="stats col-md-12">
+                <div class="col-md-4">
+                    <div class="table-name">
+                        <span class="table-name table-name-text">
+                            Выбор не меняется
+                        </span>
+                        <span class="table-name table-name-icon glyphicon glyphicon-menu-down"></span>
+                    </div>
+                    <div class="jumbotron">
+                        <p>
+                            Ведущий хитёр, но игрок стоит на своём до конца. Игрок не меняет выбор двери.
+                        </p>
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </div>
+                    <div class="col-md-12 probability-container">
+                        <div class="col-md-4 probability-text">
+                            <span class="probability">
+                                Вероятность выигрыша машины:
+                            </span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="@Model.SameDoorProb" aria-valuemin="0" aria-valuemax="100" style="width: @Model.SameDoorProb%;">
+                                    @Model.SameDoorProb%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ПРИЗ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (SameDoorStats s in Model.SameDoorTable)
+                            {
+                                if (s.Prize == Prize.Car)
+                                {
+                                    <tr class="success">
+                                        <td>@s.Number</td>
+                                        <td>машина</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr class="danger">
+                                        <td>@s.Number</td>
+                                        <td>коза</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <div class="table-name">
+                        <span class="table-name table-name-text">
+                            Выбор меняется
+                        </span>
+
+                        <span class="table-name table-name-icon glyphicon glyphicon-menu-down"></span>
+                    </div>
+                    <div class="jumbotron">
+                        <p>
+                            Показали козу? Надо поменять дверь. Игрок всегда выбирает другую дверь, относительно изначального выбора.
+                        </p>
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </div>
+                    <div class="col-md-12 probability-container">
+                        <div class="col-md-4 probability-text">
+                            <span class="probability">
+                                Вероятность выигрыша машины:
+                            </span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ChangeDoorProb" aria-valuemin="0" aria-valuemax="100" style="width: @Model.ChangeDoorProb%;">
+                                    @Model.ChangeDoorProb%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ПРИЗ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (ChangeDoorStats s in Model.ChangeDoorTable)
+                        {
+                            if (s.Prize == Prize.Car)
+                            {
+                                <tr class="success">
+                                    <td>@s.Number</td>
+                                    <td>машина</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr class="danger">
+                                    <td>@s.Number</td>
+                                    <td>коза</td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <div class="table-name">
+                        <span class="table-name table-name-text">
+                            Случайный выбор
+                        </span>
+
+                        <span class="table-name table-name-icon glyphicon glyphicon-menu-down"></span>
+                    </div>
+                    <div class="jumbotron">
+                        <p>
+                            Сомнения одолели игрока, решения переменчивые как море. Игрок выбирает то одну дверь, то другую.
+                        </p>
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </div>
+                    <div class="col-md-12 probability-container">
+                        <div class="col-md-4 probability-text">
+                            <span class="probability">
+                                Вероятность выигрыша машины:
+                            </span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="@Model.RandomChoiseTheDoorProb" aria-valuemin="0" aria-valuemax="100" style="width: @Model.RandomChoiseTheDoorProb%;">
+                                    @Model.RandomChoiseTheDoorProb%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ПРИЗ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (RandomChoiseTheDoorStats s in Model.RandomChoiseTheDoorTable)
+                        {
+                            if (s.Prize == Prize.Car)
+                            {
+                                <tr class="success">
+                                    <td>@s.Number</td>
+                                    <td>машина</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr class="danger">
+                                    <td>@s.Number</td>
+                                    <td>коза</td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/script.js"></script>
+</body>
+</html>
+
+

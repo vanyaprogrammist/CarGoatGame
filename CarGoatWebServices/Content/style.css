@@ -1,0 +1,187 @@
+
+html {
+    height: 100%;
+    width:100%;
+}
+
+body {
+    height: inherit;
+    width: inherit;
+}
+
+.door {
+    display: inline-block;
+    width: 10%;
+    height: 150px;
+    margin:0 11.5% 0;
+    margin-bottom: 0;
+    border: 2px solid black;
+    line-height: 150px;
+    text-align: center;
+}
+
+.door-container {
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.btn-play {
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+.stats {
+    margin-top: 5%;
+}
+
+.table {
+    text-align: center;
+    width: auto;
+    margin: 0 auto;
+    border-collapse: separate;
+    border: 1px solid #afabab;
+    border-radius: 6px;
+}
+
+td{
+   border-top: 1px solid #afabab !important; 
+}
+
+th{
+    border-bottom: 0 !important;
+    text-align: center;
+    
+}
+
+th:first-child {
+    border-right:1px solid #afabab;
+}
+
+
+
+td:first-child {
+    border-right: 1px solid #afabab;
+}
+
+
+
+
+.task-description {
+    display: block;
+    font-size: 1.7rem;
+    text-indent: 2rem !important;
+}
+
+h1 {
+    font-size: 4rem !important;
+}
+
+p {
+    font-size: 2rem !important;
+    text-indent: 2rem;
+}
+
+.task-name {
+    font-size: 2.7rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+header .jumbotron {
+    padding-top: 5px;
+    margin-top: 5%;
+}
+
+
+
+
+.table-name{
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.table-name-text{
+   font-size: 2rem; 
+   
+}
+
+.table-name-icon {
+    font-size: 3rem;
+    width: 100%;
+    }
+
+.table-name .table-name-icon{
+    display: none;
+}
+
+.table-name:hover .table-name-text{
+    display:none;
+}
+
+.table-name:hover .table-name-icon{
+    display:block;
+}
+
+.table-name:active{
+    color: black;
+}
+.probability {
+    display: inline-block;
+    text-align: center;
+    font-size: auto;
+    width: auto;
+}
+
+
+
+
+
+.probability-container {
+    margin-bottom: 20px;
+}
+
+.progress {
+    position: relative;
+    margin:0;
+    top: 20px;
+}
+
+
+
+@media (max-width: 1200px){
+    .col-md-8{
+        padding-left: 10%;
+    }
+}
+
+.probability-text {
+    padding-right:0;
+}
+
+.glyphicon-menu-up {
+    padding-bottom: 30px;
+    font-size: 2.5rem;
+    width: 100%;
+    transition: font-size 0.3s;
+}
+.glyphicon-menu-up:hover{
+    font-size: 4rem;
+}
+
+.glyphicon-menu-up:active{
+    color:black;
+}
+
+main .jumbotron{
+    display: block;
+    text-align: center;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+
+

@@ -71,6 +71,7 @@ namespace CarGoatWebServices.Game
                     if (i!=indexSelectedDoor && Doors[i].Prize!=Prize.Car)
                     {
                         croupier.OpenTheDoor(Doors[i]);
+                        break;
                     }
                 }
             }
